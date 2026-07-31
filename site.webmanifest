@@ -1,0 +1,12 @@
+{
+  "name": "Dream Canvas Foundation",
+  "short_name": "Dream Canvas",
+  "icons": [
+    { "src": "/images/favicons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/favicons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#33422E",
+  "background_color": "#FAF7F0",
+  "display": "standalone",
+  "start_url": "/"
+}

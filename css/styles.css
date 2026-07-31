@@ -1,0 +1,824 @@
+/* =========================================================
+   Dream Canvas Foundation — Home Page Styles
+   Mobile-first. Matches approved mockup exactly:
+   composition, spacing, typography, image cropping, proportions.
+   ========================================================= */
+
+/* ---------- Self-hosted fonts (Lora) ---------- */
+/* Bundled locally so the site renders correctly offline / without a Google Fonts
+   connection. Work Sans is not bundled (not available to package in this build
+   environment) — it loads from Google Fonts when online, and falls back to a
+   close system sans-serif (-apple-system / Segoe UI / Helvetica / Arial) if not. */
+@font-face {
+  font-family: 'Lora';
+  src: url('../fonts/Lora-Variable.ttf') format('truetype-variations');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lora';
+  src: url('../fonts/Lora-Italic-Variable.ttf') format('truetype-variations');
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Colors — warm ivory ground, soft sage accents, per approved mockup */
+  --color-bg: #FAF7F0;
+  --color-bg-alt: #F4EFE4;
+  --color-surface: #FFFFFF;
+  --color-text: #2E2E28;
+  --color-text-muted: #7A7869;
+  --color-primary: #46583F;
+  --color-primary-dark: #303D2B;
+  --color-border: #EAE4D5;
+
+  /* Type — serif display paired with a clean grotesque body, per mockup */
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Spacing scale — generous, editorial rhythm */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 2.5rem;
+  --space-5: 3.75rem;
+  --space-6: 5.5rem;
+  --space-7: 8rem;
+
+  /* Layout */
+  --content-width: 1200px;
+  --radius: 999px;      /* pill buttons, per mockup */
+  --radius-img: 10px;   /* soft, minimal image corners, per mockup */
+  --radius-card: 8px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, dl, dd { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-2);
+  color: var(--color-primary-dark);
+}
+p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* ---------- Buttons & Links ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.9rem;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--color-primary-dark); }
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+.btn--secondary:hover { background: var(--color-primary-dark); color: #fff; }
+.btn--small { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+
+.link-arrow {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.section-eyebrow-title {
+  font-size: 1.95rem;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 242, 233, 0.94);
+  backdrop-filter: saturate(140%) blur(6px);
+  border-bottom: 1px solid var(--color-border);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.7rem;
+}
+.logo { display: flex; align-items: center; gap: 0.65rem; }
+.logo__mark { flex-shrink: 0; height: 101px; width: auto; }
+
+@media (max-width: 1023px) {
+  .header__inner { padding-block: 0.1055rem; }
+  .logo__mark { height: 120px; }
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle__bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary-dark);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.primary-nav {
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: var(--color-bg);
+  padding: var(--space-4) var(--space-3);
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  overflow-y: auto;
+}
+.primary-nav.is-open { transform: translateX(0); }
+.primary-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: 1.25rem;
+}
+.primary-nav .btn { width: 100%; }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: var(--space-7) var(--space-7); }
+.hero__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.hero__title {
+  font-size: clamp(2.7rem, 8.5vw, 4.1rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  max-width: 11ch;
+}
+.hero__text { max-width: 38ch; margin-bottom: var(--space-4); font-size: 1.08rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 5 / 6; }
+.hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.16); transform-origin: 50% 30%; }
+
+/* ---------- Where It Began ---------- */
+.about-preview { padding-block: var(--space-7); background: var(--color-bg-alt); }
+.about-preview__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.about-preview__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 5 / 4; }
+.about-preview__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.0); transform-origin: 50% 45%; }
+
+@media (max-width: 1023px) {
+  .about-preview__media { aspect-ratio: 3 / 4; }
+  .about-preview__image { transform: scale(1.0); transform-origin: 50% 48%; }
+}
+.about-preview__block { padding-block: var(--space-3); border-top: 1px solid var(--color-border); }
+.about-preview__block:first-of-type { border-top: none; padding-top: 0; }
+.about-preview__block-title { font-family: var(--font-body); font-size: 0.98rem; font-weight: 600; letter-spacing: 0.01em; color: var(--color-text); margin-bottom: var(--space-1); }
+.about-preview__block p { font-size: 1.02rem; line-height: 1.75; }
+
+/* ---------- Small Acts of Care ---------- */
+.impact { padding-block: var(--space-7); text-align: center; }
+.impact__header { max-width: 54ch; margin-inline: auto; margin-bottom: var(--space-6); }
+.impact__header h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 400; }
+.impact__intro { margin-top: var(--space-2); }
+.impact__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  text-align: left;
+}
+.impact-card { padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+.impact-card:first-child { padding-top: 0; border-top: none; }
+.impact-card__media { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 6 / 5; margin-bottom: var(--space-4); }
+.impact-card__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); }
+.impact-card__title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+.impact-card__text { margin: 0; font-size: 0.95rem; }
+
+/* ---------- Every Gift Is Treated With Care ---------- */
+.transparency { padding-block: var(--space-7); background: var(--color-bg-alt); }
+.transparency__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.transparency__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+.transparency__intro h2 { font-weight: 400; font-size: 1.7rem; }
+.transparency__intro p { font-size: 1.02rem; line-height: 1.75; }
+.transparency__checklist { display: flex; flex-direction: column; gap: var(--space-4); }
+.transparency__checklist li {
+  position: relative;
+  padding-left: 1.9rem;
+  color: var(--color-text);
+  font-size: 1.02rem;
+}
+.transparency__checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.transparency__checklist li::after {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.46em;
+  width: 0.5rem;
+  height: 0.28rem;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+.transparency__reports {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  color: var(--color-text-muted);
+}
+.transparency__reports-title { color: var(--color-text); font-weight: 600; margin: 0; }
+.transparency__reports-status { margin: 0; }
+
+/* ---------- Be Part of Their Story ---------- */
+.support-cta { padding-block: var(--space-7); }
+.support-cta__inner { display: flex; flex-direction: column-reverse; gap: var(--space-5); align-items: center; }
+.support-cta__content { max-width: 640px; }
+.support-cta__content h2 { font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.3rem); }
+.support-cta__ways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-block: var(--space-5) var(--space-6);
+}
+.support-cta__way svg { color: var(--color-primary); margin-bottom: var(--space-1); }
+.support-cta__way h3 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--color-text); }
+.support-cta__way p { margin: 0; font-size: 0.9rem; }
+.support-cta__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 4 / 5; width: 100%; }
+.support-cta__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.27); transform-origin: 50% 28%; }
+
+/* ---------- Footer ---------- */
+.site-footer { padding-block: calc(var(--space-7) + 1rem) var(--space-6); background: #33422E; color: rgba(255,255,255,0.85); }
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.footer__logo { height: 44px; width: auto; }
+.footer__brand-name { color: #fff; font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; margin-block: var(--space-2) 0.35rem; }
+.footer__col h3 { color: #fff; font-family: var(--font-body); font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-2); }
+.footer__col p { margin-bottom: 0.4rem; color: rgba(255,255,255,0.75); }
+.footer__col a:hover { text-decoration: underline; }
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+}
+.footer__social:hover { background: rgba(255,255,255,0.2); }
+.footer__address-label { font-weight: 600; color: #fff; margin-bottom: 0.2rem; }
+.footer__bottom { padding-top: var(--space-3); text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+/* =========================================================
+   Tablet — expanded from mobile base
+   ========================================================= */
+@media (min-width: 768px) {
+  .impact__grid { grid-template-columns: repeat(4, 1fr); }
+  .impact-card { padding-top: 0; border-top: none; }
+  .transparency__inner { flex-direction: row; align-items: flex-start; }
+  .transparency__intro { flex: 1; }
+  .transparency__details { flex: 1; display: flex; flex-direction: column; }
+  .footer__inner { grid-template-columns: 1.4fr repeat(3, 1fr); }
+}
+
+/* =========================================================
+   Desktop — expanded from mobile/tablet base
+   ========================================================= */
+@media (min-width: 1024px) {
+  .nav-toggle { display: none; }
+  .primary-nav {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background: none;
+    padding: 0;
+    transform: none;
+    inset: auto;
+  }
+  .primary-nav__list { flex-direction: row; gap: var(--space-4); margin-bottom: 0; font-size: 0.95rem; }
+  .primary-nav .btn { width: auto; }
+
+  .hero__inner { flex-direction: row; align-items: center; gap: var(--space-6); }
+  .hero__content { flex: 0 0 38%; }
+  .hero__media { flex: 1; }
+
+  .about-preview__inner { flex-direction: row; align-items: flex-start; gap: var(--space-6); }
+  .about-preview__media { flex: 0 0 42%; }
+  .about-preview__content { flex: 1; }
+
+  .support-cta__inner { flex-direction: row; align-items: center; gap: var(--space-6); }
+  .support-cta__content { flex: 0 0 40%; }
+  .support-cta__media { flex: 1; }
+}
+
+/* =========================================================
+   About Page — "Our Story"
+   New components only; reuses the locked Home design tokens
+   (colors, type, spacing, radii, buttons, header, footer).
+   ========================================================= */
+
+.primary-nav__list a[aria-current="page"] { color: var(--color-primary-dark); font-weight: 600; }
+
+/* ---------- Page Intro ---------- */
+.story-intro { padding-block: var(--space-7) 2.25rem; }
+.story-intro h1 { font-size: clamp(2.4rem, 7vw, 3.2rem); font-weight: 400; line-height: 1.1; max-width: 14ch; margin-bottom: var(--space-4); }
+.story-intro__subtitle { font-size: 1.08rem; max-width: 40ch; }
+
+/* ---------- Story Hero Image ---------- */
+.story-hero { padding-bottom: var(--space-7); }
+.story-hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 1.48 / 1; max-width: 100%; margin-inline: auto; }
+.story-hero__image { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); object-fit: cover; transform: scale(1.15); transform-origin: 50% 35%; }
+
+/* ---------- Where It Began ---------- */
+.story-began { padding-block: var(--space-7); background: var(--color-bg-alt); }
+
+.story-row { display: flex; flex-direction: column; gap: var(--space-5); }
+.story-row--2026 { flex-direction: column-reverse; }
+.story-row + .story-row { margin-top: var(--space-6); }
+
+.story-row__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 3 / 2; width: 100%; }
+.story-row__image { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); object-fit: cover; transform: scale(1.0); }
+
+.story-row__text { display: flex; flex-direction: column; justify-content: center; }
+.story-row__title { font-family: var(--font-body); font-size: 0.98rem; font-weight: 600; letter-spacing: 0.01em; color: var(--color-text); margin-bottom: var(--space-1); }
+.story-row__text p { font-size: 1.02rem; line-height: 1.75; }
+
+/* 2026 row has no H2, so give its title the same top rhythm the H2 gives the 2012 row */
+.story-row--2026 .story-row__title { margin-top: 0; }
+
+/* ---------- Our Impact (Stats) ---------- */
+.story-impact { padding-block: var(--space-7); text-align: center; }
+.story-impact__header { max-width: 54ch; margin-inline: auto; margin-bottom: var(--space-5); }
+.story-impact__header h2 { font-size: clamp(1.7rem, 4vw, 2.2rem); font-weight: 400; }
+.story-impact__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5) var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.story-stat { display: flex; flex-direction: column; align-items: center; }
+.story-stat svg { color: var(--color-primary); margin-bottom: var(--space-1); }
+.story-stat__label { font-size: 0.9rem; margin: 0; }
+
+.story-quote {
+  max-width: 56ch;
+  margin: 0 auto;
+  padding: 0;
+}
+.story-quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  color: var(--color-primary-dark);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =========================================================
+   About Page — Tablet / Desktop
+   ========================================================= */
+@media (min-width: 768px) {
+  .story-impact__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .story-hero__media { max-width: 77.5%; }
+  .story-row { flex-direction: row; align-items: center; gap: var(--space-6); }
+  .story-row--2012 { gap: 1.5625rem; }
+  .story-row--2012 .story-row__text { margin-top: 1.5625rem; }
+  .story-row--2026 { gap: 0.5rem; }
+  .story-row__media { flex: 0 0 48%; }
+  .story-row__text { flex: 1; }
+}
+
+/* =========================================================
+   Support Page — "Be Part of Their Story"
+   New components only; reuses the locked design tokens
+   (colors, type, spacing, radii, buttons, header, footer).
+   ========================================================= */
+
+/* ---------- Support Hero ---------- */
+.sup-hero { padding-block: var(--space-7) var(--space-7); }
+.sup-hero__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.sup-hero__content h1 { font-size: clamp(2.4rem, 7vw, 3.2rem); font-weight: 400; line-height: 1.1; max-width: 13ch; margin-bottom: var(--space-4); }
+.sup-hero__content p { font-size: 1.08rem; max-width: 42ch; }
+.sup-hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 5 / 6; width: 91%; max-width: 91%; margin-inline: auto; }
+.sup-hero__image { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); object-fit: cover; transform: scale(1.08); transform-origin: 50% 42%; }
+
+/* ---------- Ways to Support ---------- */
+.sup-ways { padding-block: var(--space-7); background: var(--color-bg-alt); text-align: center; }
+.sup-ways__heading { font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.2rem); margin-bottom: var(--space-6); }
+.sup-ways__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6.125rem;
+  text-align: left;
+  max-width: 900px;
+  margin-inline: auto;
+}
+.sup-way svg { color: var(--color-primary); margin-bottom: var(--space-3); }
+.sup-way h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.55rem; }
+.sup-way p { margin: 0; }
+.sup-ways__closing {
+  margin: 6.625rem auto 0;
+  max-width: 44ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-primary-dark);
+}
+
+/* ---------- Financial Transparency ---------- */
+.sup-financial { padding-block: var(--space-7); }
+.sup-financial__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.sup-financial__content h2 { font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.2rem); }
+.sup-financial__content p { font-size: 1.02rem; line-height: 1.75; max-width: 48ch; }
+.sup-financial__checklist { display: flex; flex-direction: column; gap: 3.0625rem; margin-top: var(--space-4); }
+.sup-financial__checklist li {
+  position: relative;
+  padding-left: 1.9rem;
+  color: var(--color-text);
+  font-size: 1.02rem;
+}
+.sup-financial__checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.sup-financial__checklist li::after {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.46em;
+  width: 0.5rem;
+  height: 0.28rem;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+.sup-financial__photo { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 0.952 / 1; }
+.sup-financial__image { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); object-fit: cover; transform: scale(1.0); }
+.sup-financial__reports {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  color: var(--color-text-muted);
+}
+.sup-financial__reports-title { color: var(--color-text); font-weight: 600; margin: 0; }
+.sup-financial__reports-status { margin: 0; }
+
+/* =========================================================
+   Support Page — Tablet / Desktop
+   ========================================================= */
+@media (min-width: 768px) {
+  .sup-ways__grid { grid-template-columns: repeat(3, 1fr); gap: 6.375rem; }
+}
+
+@media (min-width: 1024px) {
+  .sup-hero__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-6); }
+  .sup-hero__content { flex: 0 0 42%; }
+  .sup-hero__media { flex: 0 0 45.79%; width: auto; max-width: none; margin-inline: 0; }
+
+  .sup-financial__inner { flex-direction: row; align-items: flex-start; gap: var(--space-6); }
+  .sup-financial__content { flex: 1; }
+  .sup-financial__media { flex: 0 0 38%; }
+}
+
+/* =========================================================
+   Contact Page — "Get in Touch"
+   New components only; reuses the locked design tokens
+   (colors, type, spacing, radii, buttons, header, footer).
+   ========================================================= */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Get in Touch ---------- */
+.con-hero { padding-block: var(--space-7) var(--space-7); }
+.con-hero__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.con-hero__content h1 { font-size: clamp(2.4rem, 7vw, 3.2rem); font-weight: 400; line-height: 1.1; max-width: 12ch; margin-bottom: var(--space-4); }
+.con-hero__content > p { font-size: 1.08rem; max-width: 42ch; margin-bottom: var(--space-4); }
+.con-hero__details { display: flex; flex-direction: column; gap: var(--space-4); }
+.con-hero__item { display: flex; align-items: flex-start; gap: var(--space-2); }
+.con-hero__item svg { color: var(--color-primary); flex-shrink: 0; margin-top: 0.15rem; }
+.con-hero__item dt { font-weight: 600; color: var(--color-text); margin-bottom: 0.2rem; }
+.con-hero__item dd { color: var(--color-text-muted); margin: 0; }
+.con-hero__item dd a { text-decoration: underline; text-underline-offset: 3px; }
+.con-hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 6 / 5; }
+.con-hero__image { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); object-fit: cover; transform: scale(1.04); }
+
+/* ---------- Get in Touch (Contact Info) ---------- */
+.con-info { padding-block: var(--space-7); background: var(--color-bg-alt); }
+.con-info h2 { font-weight: 400; font-size: clamp(1.7rem, 4vw, 2.2rem); margin-bottom: var(--space-5); }
+
+/* ---------- Map + Message Form ---------- */
+.con-form { padding-block: var(--space-7); background: var(--color-bg-alt); }
+.con-form__inner { display: flex; flex-direction: column; gap: var(--space-5); }
+.con-form__map-image { border-radius: var(--radius-img); width: 100%; object-fit: cover; aspect-ratio: 6 / 5; }
+
+.con-form__panel h2 { font-weight: 400; font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: var(--space-4); }
+.con-form__form { display: flex; flex-direction: column; gap: var(--space-3); }
+.con-form__row { display: flex; flex-direction: column; gap: var(--space-3); }
+.con-form__field { display: flex; }
+.con-form__field input,
+.con-form__field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1.1rem;
+}
+.con-form__field textarea { resize: vertical; min-height: 130px; }
+.con-form__field input::placeholder,
+.con-form__field textarea::placeholder { color: var(--color-text-muted); }
+.con-form__field input:focus,
+.con-form__field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.con-form__form .btn { align-self: flex-start; margin-top: var(--space-1); }
+
+/* =========================================================
+   Contact Page — Tablet / Desktop
+   ========================================================= */
+@media (min-width: 600px) {
+  .con-form__row { flex-direction: row; }
+}
+
+@media (min-width: 1024px) {
+  .con-hero__inner { flex-direction: row; align-items: center; gap: var(--space-6); }
+  .con-hero__content { flex: 0 0 42%; }
+  .con-hero__media { flex: 1; }
+
+  .con-form__inner { flex-direction: row; align-items: flex-start; gap: var(--space-6); }
+  .con-form__map { flex: 1; }
+  .con-form__panel { flex: 1; }
+}
+
+/* =========================================================
+   Hero Branding Review — Option B / C only
+   New, isolated classes. Not used on the approved Home page,
+   so index.html and all other pages are unaffected.
+   ========================================================= */
+.hero__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+}
+
+.hero__intro-line {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-top: 0.35rem;
+  margin-bottom: var(--space-3);
+}
+
+/* =========================================================
+   Where It Began — Mobile Reorder Comparison (Option B)
+   Isolated class, only used in home-whereitbegan-optionB.html.
+   Mobile: text block appears before the photo.
+   Tablet/Desktop: explicitly unchanged from the approved layout.
+   ========================================================= */
+.about-preview__inner--mobile-reorder {
+  flex-direction: column-reverse;
+}
+@media (min-width: 1024px) {
+  .about-preview__inner--mobile-reorder {
+    flex-direction: row; /* identical to the approved desktop rule — explicitly restated to guarantee desktop is unaffected */
+  }
+}
+
+/* =========================================================
+   Where It Began — Photo-Between-Entries Comparison (Option C)
+   Isolated class, only used in home-whereitbegan-optionC.html.
+   Mobile: Heading -> 2012 -> Photo -> 2026.
+   Desktop: reconstructs the exact approved two-column layout
+   (photo column 42% + text column, column-gap: space-6) using
+   the same tokens as .about-preview__inner, so desktop renders
+   pixel-identical to the approved Home page.
+   ========================================================= */
+.wib-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  grid-template-areas:
+    "heading"
+    "block2012"
+    "photo"
+    "block2026";
+}
+.wib-grid__heading { grid-area: heading; }
+.wib-grid__block2012 { grid-area: block2012; }
+.wib-grid__photo { grid-area: photo; margin-block: var(--space-5); }
+.wib-grid__block2026 { grid-area: block2026; }
+
+@media (min-width: 1024px) {
+  .wib-grid {
+    grid-template-columns: 42% 1fr;
+    column-gap: var(--space-6);
+    row-gap: 0;
+    align-items: start;
+    grid-template-areas:
+      "photo heading"
+      "photo block2012"
+      "photo block2026";
+  }
+  .wib-grid__photo { margin-block: 0; }
+}
+
+/* =========================================================
+   Final Mobile Polish — placed at end of file deliberately,
+   so these correctly win the cascade over the earlier base
+   rules for the same selectors (equal specificity, source
+   order decides). Desktop (min-width:1024px) rules elsewhere
+   are unaffected since this block only applies below 1024px.
+   ========================================================= */
+@media (max-width: 1023px) {
+  .impact__grid { gap: 4.625rem; }
+  .transparency__checklist { gap: var(--space-3); }
+  .support-cta__media { aspect-ratio: 0.941 / 1; }
+}
+
+/* =========================================================
+   About Page — Mobile Hero Photo Fix
+   Same technique as Home's "Where It Began" mobile fix:
+   widen the mobile-only container ratio so more of the
+   portrait source photo's height is visible (sign, roof,
+   window, shoe row), instead of a tight center-crop of
+   mostly wall. Desktop (min-width:1024px) untouched.
+   ========================================================= */
+@media (max-width: 1023px) {
+  .story-hero__media { aspect-ratio: 3 / 4; }
+  .story-hero__image { transform: scale(1.25); transform-origin: 50% 32%; }
+}
+
+/* =========================================================
+   About Page — Mobile Image Width Increase (~7%)
+   Placed at end of file to correctly win the cascade over
+   earlier base rules. Breaks the three story images slightly
+   outside the standard content padding (a deliberate, common
+   editorial technique) since they were already at 100% of
+   their container — this is the only way to make them wider.
+   Desktop (min-width:1024px) untouched.
+   ========================================================= */
+/* =========================================================
+   About Page — Mobile Image Width (~93.5% of viewport)
+   Placed at end of file to correctly win the cascade over
+   earlier base rules. Uses viewport-relative units so the
+   percentage target holds precisely across different real
+   phone widths, not just one fixed test size. Breaks the
+   three story images slightly outside the standard content
+   padding (a deliberate, common editorial technique) since
+   they were already at 100% of their own container — this
+   is the only way to make them wider than that.
+   Desktop (min-width:1024px) untouched.
+   ========================================================= */
+@media (max-width: 1023px) {
+  .story-hero__media,
+  .story-row__media {
+    width: 98vw;
+    max-width: 98vw;
+    margin-inline: calc((100% - 98vw) / 2);
+  }
+}
+
+/* =========================================================
+   About Page — Mobile: 2026 paragraph readability (+7.5%)
+   Scoped to only the 2026 body paragraph. Heading, spacing,
+   image size, and desktop are all untouched.
+   ========================================================= */
+@media (max-width: 1023px) {
+  .story-row--2026 .story-row__text p { font-size: 1.1rem; }
+}
+
+/* =========================================================
+   About Page — Mobile: more breathing room between the 2026
+   photo and its text (photo sits above text on mobile).
+   Desktop untouched (its own gap rule is defined separately
+   inside the min-width:1024px block and takes precedence there).
+   ========================================================= */
+@media (max-width: 1023px) {
+  .story-row--2026 { gap: calc(var(--space-5) + 10px); }
+}

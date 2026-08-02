@@ -219,7 +219,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 }
 .hero__text { max-width: 38ch; margin-bottom: 3.28rem; font-size: 1.08rem; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 5 / 6; width: 74.25%; max-width: 74.25%; margin-inline: auto; background: var(--color-bg); }
+.hero__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 6 / 5; width: 92%; max-width: 92%; margin-inline: auto; background: var(--color-bg); }
 .hero__image { position: absolute; inset: -10px; width: calc(100% + 20px); height: calc(100% + 20px); max-width: none; border-radius: inherit; object-fit: cover; transform: scale(1.0); transform-origin: 50% 50%; }
 
 /* ---------- Where It Began ---------- */
@@ -398,8 +398,8 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 
   .hero { padding-block: 3.3125rem var(--space-7); }
   .hero__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-6); }
-  .hero__content { flex: 0 0 38%; }
-  .hero__media { flex: 0 0 40.3%; width: auto; max-width: none; margin-inline: 0; }
+  .hero__content { flex: 0 0 34%; }
+  .hero__media { flex: 0 0 48%; width: auto; max-width: none; margin-inline: 0; }
 
   .about-preview__inner { flex-direction: row; align-items: flex-start; gap: var(--space-6); }
   .about-preview__media { flex: 0 0 40.34%; width: auto; margin-inline: 0; }
@@ -941,9 +941,9 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 .belong-intro__inner { display: flex; flex-direction: column; gap: var(--space-5); }
 .belong-intro__content h1 { font-weight: 400; line-height: 1.15; margin-bottom: var(--space-4); }
 .belong-intro__content p { font-size: 1.08rem; line-height: 1.75; color: var(--color-text-muted); max-width: 56ch; }
-.belong-intro__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 6 / 5; width: 103.4%; max-width: 103.4%; margin-inline: auto; background: var(--color-bg); }
+.belong-intro__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 3 / 2; width: 92%; max-width: 92%; margin-inline: auto; background: var(--color-bg); }
 .belong-intro__image { position: absolute; inset: -10px; width: calc(100% + 20px); height: calc(100% + 20px); max-width: none; border-radius: inherit; object-fit: cover; }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .belong-intro__inner { flex-direction: row; align-items: center; gap: var(--space-6); }
   .belong-intro__content { flex: 1; }
   .belong-intro__media { flex: 0 0 54.03%; width: auto; max-width: none; margin-inline: 0; }
@@ -961,7 +961,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
   border-radius: var(--radius-card);
   padding: var(--space-4);
   text-align: left;
-  min-height: 277px;
+  min-height: 346px;
 }
 .belong-way svg { color: var(--color-primary); margin-bottom: var(--space-3); }
 .belong-way h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem; }
@@ -981,7 +981,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 .belong-mutual__content p:last-child { margin-bottom: 0; }
 .belong-mutual__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 1.5 / 1; width: 84%; margin-inline: auto; background: var(--color-bg-alt); }
 .belong-mutual__image { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; object-fit: contain; }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .belong-mutual__inner { flex-direction: row-reverse; align-items: center; gap: var(--space-6); }
   .belong-mutual__content { flex: 1; }
   .belong-mutual__media { flex: 0 0 45.57%; width: auto; max-width: none; margin-inline: 0; }
@@ -1067,7 +1067,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 }
 
 @media (min-width: 640px) {
-  .belong-bank__cards { flex-direction: row; }
+  .belong-bank__cards { flex-direction: row; align-items: flex-start; }
   .belong-bank__subcard { flex: 1; }
 }
 
@@ -1079,8 +1079,11 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 .belong-closing__inner p { font-size: 1.05rem; line-height: 1.8; color: var(--color-text-muted); margin-bottom: var(--space-3); }
 .belong-closing__inner p:last-child { margin-bottom: 0; }
 
-/* Mobile — slightly slower reading rhythm between sections */
-@media (max-width: 1023px) {
+/* Mobile — slightly slower reading rhythm between sections.
+   Scoped to true mobile only so tablet matches the standard
+   128px rhythm used on every other page (was leaking into the
+   768-1023px tablet range before, creating an inconsistency). */
+@media (max-width: 767px) {
   .belong-mutual,
   .belong-ways,
   .belong-closing { padding-block: calc(var(--space-7) + var(--space-2)); }
@@ -1145,4 +1148,13 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
   width: 100%;
   height: 100%;
   max-width: 100%;
+}
+
+/* Home hero — true mobile only: reduce top padding and content-
+   to-image gap so the hero photo becomes visible sooner without
+   excessive scroll. Scoped below 768px so tablet keeps matching
+   About/Belong's shared 78px hero-intro padding pattern. */
+@media (max-width: 767px) {
+  .hero { padding-top: 3.2rem; }
+  .hero__inner { gap: var(--space-3); }
 }

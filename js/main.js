@@ -5,8 +5,21 @@
 (function () {
   const toggle = document.getElementById('nav-toggle');
   const nav = document.getElementById('primary-nav');
+  const header = document.querySelector('.site-header');
 
   if (!toggle || !nav) return;
+
+  // Set the nav's top offset to the header's real measured height,
+  // not a hardcoded guess — this is recalculated on load and on
+  // resize so it can never silently drift out of sync with the
+  // header's actual rendered height.
+  function setHeaderHeightVar() {
+    if (!header) return;
+    const h = header.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+  }
+  setHeaderHeightVar();
+  window.addEventListener('resize', setHeaderHeightVar);
 
   toggle.addEventListener('click', function () {
     const isOpen = nav.classList.toggle('is-open');

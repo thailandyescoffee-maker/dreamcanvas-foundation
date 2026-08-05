@@ -41,13 +41,37 @@
         <span class="nav-toggle__bar"></span>
       </button>
 
+            <div class="lang-switcher" id="lang-switcher-header">
+        <button type="button" class="lang-switcher__toggle" aria-expanded="false" aria-haspopup="true" aria-label="Select language">
+          <span class="lang-switcher__flag">🇬🇧</span> EN
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="lang-switcher__menu">
+          <li><a href="/support" aria-current="true"><span class="lang-switcher__flag">🇬🇧</span> English</a></li>
+          <li><a href="/ko/support"><span class="lang-switcher__flag">🇰🇷</span> 한국어</a></li>
+          <li><a href="/th/support"><span class="lang-switcher__flag">🇹🇭</span> ไทย</a></li>
+        </ul>
+      </div>
+
       <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <ul class="primary-nav__list">
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/support" aria-current="page">Support</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/donate#bank-details">Donation Account</a></li>
         </ul>
+        <div class="lang-switcher">
+          <button type="button" class="lang-switcher__toggle" aria-expanded="false" aria-haspopup="true" aria-label="Select language">
+            <span class="lang-switcher__flag">🇬🇧</span> English
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="lang-switcher__menu">
+            <li><a href="/support" aria-current="true"><span class="lang-switcher__flag">🇬🇧</span> English</a></li>
+            <li><a href="/ko/support"><span class="lang-switcher__flag">🇰🇷</span> 한국어</a></li>
+            <li><a href="/th/support"><span class="lang-switcher__flag">🇹🇭</span> ไทย</a></li>
+          </ul>
+        </div>
         <a href="/donate" class="btn btn--primary btn--small">Donate</a>
       </nav>
     </div>

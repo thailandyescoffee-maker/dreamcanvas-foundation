@@ -35,4 +35,24 @@
       toggle.setAttribute('aria-label', 'Open menu');
     });
   });
+
+  // Language switcher(s) — header version and mobile-nav version
+  // both use the same markup pattern, so wire up every instance.
+  document.querySelectorAll('.lang-switcher').forEach(function (switcher) {
+    const btn = switcher.querySelector('.lang-switcher__toggle');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = switcher.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.lang-switcher.is-open').forEach(function (switcher) {
+      if (!switcher.contains(e.target)) {
+        switcher.classList.remove('is-open');
+        switcher.querySelector('.lang-switcher__toggle').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
 })();

@@ -963,6 +963,9 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
   text-align: left;
   min-height: 346px;
 }
+@media (max-width: 767px) {
+  .belong-way { padding: var(--space-3); min-height: 296px; }
+}
 .belong-way svg { color: var(--color-primary); margin-bottom: var(--space-3); }
 .belong-way h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem; }
 .belong-way p { margin: 0; color: var(--color-text-muted); font-size: 0.96rem; line-height: 1.65; }
@@ -1157,4 +1160,91 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 @media (max-width: 767px) {
   .hero { padding-top: 3.2rem; }
   .hero__inner { gap: var(--space-3); }
+}
+
+/* =========================================================
+   MOBILE UX REVISION — reduce excessive spacing site-wide.
+   Redefining the core spacing tokens for true mobile only
+   (below 768px) cascades a tighter, more connected reading
+   rhythm through every section on every page automatically,
+   since --space-6/--space-7 are the tokens nearly all major
+   section padding and content gaps are built from. Desktop
+   and tablet layouts are completely unaffected — this block
+   only ever applies below 768px.
+   ========================================================= */
+@media (max-width: 767px) {
+  :root {
+    --space-5: 2.5rem;   /* was 3.75rem (60px) -> 40px */
+    --space-6: 3.5rem;   /* was 5.5rem (88px) -> 56px */
+    --space-7: 4rem;     /* was 8rem (128px) -> 64px */
+  }
+  .sup-way,
+  .con-form__panel {
+    padding: var(--space-3);
+  }
+}
+
+/* =========================================================
+   Language Switcher — matches existing header/nav typography
+   and color language exactly. No new visual style introduced.
+   ========================================================= */
+.lang-switcher { position: relative; }
+.lang-switcher__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.45rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.lang-switcher__toggle:hover { border-color: var(--color-primary-dark); }
+.lang-switcher__toggle svg { width: 14px; height: 14px; transition: transform 0.15s ease; }
+.lang-switcher.is-open .lang-switcher__toggle svg { transform: rotate(180deg); }
+.lang-switcher__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 150px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 24px rgba(48,61,43,0.12);
+  padding: 0.4rem;
+  list-style: none;
+  margin: 0;
+  display: none;
+  z-index: 60;
+}
+.lang-switcher.is-open .lang-switcher__menu { display: block; }
+.lang-switcher__menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: calc(var(--radius-card) - 6px);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.lang-switcher__menu a:hover { background: var(--color-bg-alt); }
+.lang-switcher__menu a[aria-current="true"] { font-weight: 600; color: var(--color-primary-dark); }
+.lang-switcher__flag { font-size: 1.05rem; line-height: 1; }
+
+/* Mobile nav placement */
+.primary-nav .lang-switcher { display: block; margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+.primary-nav .lang-switcher__toggle { width: 100%; justify-content: space-between; }
+.primary-nav .lang-switcher__menu { position: static; box-shadow: none; border: none; padding: 0.4rem 0 0 0; display: none; }
+.primary-nav .lang-switcher.is-open .lang-switcher__menu { display: block; }
+
+#lang-switcher-header { display: none; }
+@media (min-width: 1024px) {
+  .primary-nav .lang-switcher { display: none; }
+  #lang-switcher-header { display: block; }
 }

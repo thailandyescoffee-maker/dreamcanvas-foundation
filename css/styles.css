@@ -440,7 +440,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 .story-row--2026 { flex-direction: column-reverse; }
 .story-row + .story-row { margin-top: var(--space-6); }
 
-.story-row__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 3 / 2; width: 100%; margin-inline: 0; background: var(--color-bg-alt); }
+.story-row__media { position: relative; overflow: hidden; border-radius: var(--radius-img); aspect-ratio: 3 / 2; width: 100%; margin-inline: 0; background: var(--color-bg-alt); min-height: 0; min-width: 0; flex-shrink: 0; }
 .story-row__image { position: absolute; inset: -10px; width: calc(100% + 20px); height: calc(100% + 20px); max-width: none; border-radius: inherit; object-fit: cover; transform: scale(1.0); }
 
 .story-row__text { display: flex; flex-direction: column; justify-content: center; }
@@ -530,7 +530,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
   display: flex;
   flex-direction: column;
 }
-.sup-way svg { color: var(--color-primary); margin-bottom: 0.85rem; flex-shrink: 0; }
+.sup-way svg { color: var(--color-primary); margin: 0 0.4rem 0.85rem; flex-shrink: 0; }
 .sup-way h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--color-text); margin: 0 0.4rem 0.55rem; }
 .sup-way p { margin: 0 0.4rem; }
 .sup-ways__closing {
@@ -873,7 +873,7 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
 @media (min-width: 768px) {
   .sup-ways__grid--four { grid-template-columns: repeat(2, 1fr); }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .sup-ways__grid--four { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -1060,8 +1060,8 @@ p { margin: 0 0 var(--space-2); color: var(--color-text-muted); font-weight: 400
   border-radius: var(--radius);
   padding: var(--space-4);
 }
-.belong-bank__subcard h3 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: var(--space-3); }
-.belong-bank__details { display: flex; flex-direction: column; gap: var(--space-3); }
+.belong-bank__subcard h3 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: var(--space-3); text-align: center; }
+.belong-bank__details { display: flex; flex-direction: column; gap: var(--space-3); align-items: center; text-align: center; }
 .belong-bank__row { display: flex; flex-direction: column; gap: 0.3rem; }
 .belong-bank__row dt { color: var(--color-text-muted); font-size: 0.85rem; }
 .belong-bank__row dd { margin: 0; font-weight: 600; color: var(--color-text); text-align: left; line-height: 1.5; }

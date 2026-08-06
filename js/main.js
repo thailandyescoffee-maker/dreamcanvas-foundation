@@ -56,3 +56,46 @@
     });
   });
 })();
+
+// Back to Top — injected once per page so every page (in every
+// language) gets an identical, consistent button without needing
+// to edit each HTML file.
+(function () {
+  var labels = {
+    en: 'Back to top',
+    ko: '맨 위로',
+    th: 'กลับไปด้านบน',
+    my: 'အပေါ်သို့ ပြန်သွားရန်'
+  };
+  var lang = (document.documentElement.lang || 'en').split('-')[0];
+  var label = labels[lang] || labels.en;
+
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', label);
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(btn);
+
+  var visibleThreshold = 500;
+  var ticking = false;
+  function updateVisibility() {
+    if (window.scrollY > visibleThreshold) {
+      btn.classList.add('is-visible');
+    } else {
+      btn.classList.remove('is-visible');
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(updateVisibility);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateVisibility();
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();

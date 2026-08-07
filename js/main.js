@@ -65,6 +65,7 @@
     en: 'Back to top',
     ko: '맨 위로',
     th: 'กลับไปด้านบน',
+    ru: 'Наверх',
     my: 'အပေါ်သို့ ပြန်သွားရန်'
   };
   var lang = (document.documentElement.lang || 'en').split('-')[0];
